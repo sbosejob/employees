@@ -1,0 +1,43 @@
+<div class="container-fluid">
+  <div class="row mt-3">
+    <div class="col-md-4">
+      <div class="form-group">
+        <input type="text" [(ngModel)]="nameSearch" class="form-control" placeholder="Search by name/city" />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+      <a [routerLink]="['/employees/add']">Add Employee</a>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <h3 class="text-center">Employee List</h3>
+      <table class="table table-bordered">
+        <tr class="bg-primary">
+          <td> Id</td>
+          <td>Name</td>
+          <td>Phone</td>
+          <td>City</td>
+          <td>Address1 </td>
+          <td>Address2</td>
+          <td>Postal Code</td>
+          <td>Edit </td>
+        </tr>
+        <tr *ngFor="let emp of empData | filter:nameSearch">
+          <td>{{emp.id}}</td>
+          <td>{{emp.name}}</td>
+          <td>{{emp.phone | checkNumber:emp.phone}}</td>
+          <td>{{emp.address.city}}</td>
+          <td>{{emp.address.address_line1}}</td>
+          <td>{{emp.address.address_line2}}</td>
+          <td>{{emp.address.postal_code}}</td>
+          <!-- <td><a [routerLink]="['/employees/edit', emp.id]">Edit</a></td> -->         
+          <td><a [routerLink]="['/employees/'+ emp.id +'/edit']">Edit</a></td> 
+        </tr>
+      </table>
+
+    </div>
+  </div>
+</div>
